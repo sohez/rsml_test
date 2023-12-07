@@ -1,39 +1,31 @@
 import Link from "next/link"
-import NavBar from "./NavBar"
-import { FC } from "react"
-import { Props } from "next/script"
+import { useState } from "react"
+import NavItemList from "./NavItemList";
 
-interface data{
-  name:string,
-  link: string | Array<object>
-}
 
-const NavItem : FC<data> = (props)=>{
-     alert(props)
+const NavItem = ({data})=>{
+  const [comp,setComp] = useState(null);
+    //  alert(data)
+    const HandleClick = ()=>{
+      {
+        // console.log("Navitem clicked")
+        Array.isArray(data.link) === true ? (
+        //link direct link or navigation   
+        // console.log("show the NavList")
+        setComp( <NavItemList list={data.link}/> )
+        
+        ):(
+        console.log("Go to Link")
+       //  <Link href={data.link.toString()}><p>avc{data.name}</p></Link> 
+        )
+       }
+    }
     return(
-        <> 
-          {
-           Array.isArray(props.link) === true ? (
-           //link direct link or navigation   
-             <Link href={props.link.toString()}><p>avc{props.name}</p></Link> 
-           ):(
-            <NavBar/>
-           )
-          }
-    </>
+        <li>
+        <button className="NavItem" onClick={HandleClick}>{data.name}</button>
+        {comp}   
+        </li>
     )
 }
 
-// return (
-// <>
-// {
-//     if(props.NavBar.sub === false){
-//         //link direct or navigation
-//         console.log('hi')
-//      //<Link href={props.NavObj.link}><p>avc{props.NavObj.name}</p></Link>
-//     }
-// }
-// </>
-// )
-//}
 export default NavItem
