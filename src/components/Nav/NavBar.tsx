@@ -17,24 +17,41 @@ const item = [
         name: "Bvoc",
         link: [
           {
-            name: "CT",
+            name: "Computer Tech",
             link: "/ct",
           },
           {
-            name: "CT",
+            name: "Food Proces",
             link: "/ct",
           },
         ],
       },
+      {
+        name: "BCA",
+        link: [
+          {
+            name: "BCA Tech",
+            link: "/ct",
+          },
+          {
+            name: "BCA Food",
+            link: "/ct",
+          },
+          {
+            name: "BCA ACCOUNT",
+            link: "/ct",
+          }
+        ],
+      }
     ],
   },
 ];
 
 const NavBar = () => {
   return (
-    <>
+    <nav>
     <NavItemList list={item}/>
-    </>
+    </nav>
   );
 };
 
