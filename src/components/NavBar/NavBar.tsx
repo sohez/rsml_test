@@ -12,8 +12,11 @@ const NavBar1 = () => {
 
   //when the user click on back button
   const handleBackButton = () => {
+    //check if track is not empty, if it is empty then set the main default json.
     if (trackArray.length != 0) {
+      //set the last newly added array
       setData(trackArray[trackArray.length - 1]);
+      //remove the newly added array
       trackArray.pop();
     } else {
       setData(navJson);
@@ -23,13 +26,16 @@ const NavBar1 = () => {
   return (
     <>
       <div id="navHolder">
-        <button onClick={handleBackButton}>Back</button>
-        {data.map((navJson, index) => {
+        {
+            data == navJson ? "": <button onClick={handleBackButton}>Back</button>
+        }
+        {
+        data.map((navJson, index) => {
           return (
             <>
               <div key={index}>
                 <p
-                  className="navJson"
+                  className="item"
                   onClick={() => {
                     if (Array.isArray(navJson.link)) {
                       //if it is sub menu

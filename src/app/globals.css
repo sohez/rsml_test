@@ -8,7 +8,10 @@
 }
 
 #navHolder{
-  background-color: rgb(252, 252, 252);
+  background-color: rgb(189, 186, 186);
+  overflow-y: scroll;
+  height: 100vh;
+  padding: 8px;
 }
 
 .item{
