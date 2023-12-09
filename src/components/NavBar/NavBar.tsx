@@ -1,6 +1,8 @@
 "use client";
 import { useState } from "react";
 import navJson from "./navData.json"; //imported the json file.
+import { ArrowLeft, X, Home, ChevronRight } from "lucide-react";//icons
+import { useRouter } from "next/navigation"; // navigation
 
 //create the arry for store the, track of navigation.
 //zero postion is the, main all default json items.
@@ -9,6 +11,9 @@ const trackArray = [navJson];
 const NavBar1 = () => {
   //strore the actual Array data.
   const [data, setData] = useState(navJson);
+
+  //using Router Update the Address Bar, Navigation..
+  const router = useRouter();
 
   //when the user click on back button
   const handleBackButton = () => {
@@ -23,38 +28,52 @@ const NavBar1 = () => {
     }
   };
 
+  const handleItemClick = (itemObject: any) => {
+    if (Array.isArray(itemObject.link)) {
+      //it is sub menu
+      trackArray.push(data);
+      setData(itemObject.link);
+    } else {
+      //it is a link, Router push update address bar (Navigate)
+      router.push(itemObject.link);
+    }
+  };
+
   return (
-    <>
-      <div id="navHolder">
-        {
-            data == navJson ? "": <button onClick={handleBackButton}>Back</button>
-        }
-        {
-        data.map((navJson, index) => {
+    <div id="navHolder">
+      <div className="BackHolder">
+        {data == navJson ? (
+          <Home style={{ visibility: "hidden" }} size={25} />
+        ) : (
+          <ArrowLeft
+            className="icon-hover"
+            color="black"
+            size={30}
+            strokeWidth={1}
+            onClick={handleBackButton}
+          />
+        )}
+        <X className="icon-hover" color="black" size={30} strokeWidth={1} />
+      </div>
+      <ul>
+        {data.map((itemObject, index) => {
           return (
-            <>
-              <div key={index}>
-                <p
-                  className="item"
-                  onClick={() => {
-                    if (Array.isArray(navJson.link)) {
-                      //if it is sub menu
-                      trackArray.push(data);
-                      setData(navJson.link);
-                    } else {
-                      //if it is link
-                      console.log(8);
-                    }
-                  }}
-                >
-                  {navJson.name}
-                </p>
-              </div>
-            </>
+            <li
+              key={index}
+              className="item"
+              onClick={() => handleItemClick(itemObject)}
+            >
+              <a>{itemObject.name}</a>
+              {Array.isArray(itemObject.link) ? (
+                <ChevronRight strokeWidth={1} size={20} />
+              ) : (
+                ""
+              )}
+            </li>
           );
         })}
-      </div>
-    </>
+      </ul>
+    </div>
   );
 };
 

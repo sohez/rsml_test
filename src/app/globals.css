@@ -1,22 +1,52 @@
-.NavItem{
-  background-color: rgb(249, 249, 249);
-  border-radius: 12%;
-  padding: 10px 12px;
-  border: none;
-  margin: 5px;
-  cursor: pointer;
+body{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 0%;
+  margin: 0%;
+  box-sizing: border-box;
 }
 
 #navHolder{
-  background-color: rgb(189, 186, 186);
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: rgb(244, 244, 244);
   overflow-y: scroll;
   height: 100vh;
-  padding: 8px;
+  z-index: 100;
+  width: 230px;
+  padding-top: 15px;
 }
 
+ul{
+  padding: 0;
+  list-style-type: none;
+}
 .item{
-  padding: 12px 8px;
+  padding: 8px;
   cursor: pointer;
-  background-color: rgb(220, 220, 220);
-  border-radius: 12px;
-} 
+  border-radius: 4px;
+  margin: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.item:hover{
+  /* outline: 1px solid black; */
+  font-weight: 500;
+  /* background-color: rgb(213, 213, 213); */
+  text-decoration: underline;
+  transition: all .2s ease; 
+}
+
+.BackHolder{
+  display: flex;
+  justify-content: space-between;
+  padding: 18px;
+}
+.icon-hover:hover{
+  outline: 1px solid #252525;
+  cursor: pointer;
+}
